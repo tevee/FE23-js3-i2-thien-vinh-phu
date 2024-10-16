@@ -10,16 +10,7 @@ export default class Board extends React.Component {
       board: createBoard(25, 7),
       isGameOver: false,
       isGameWon: false
-    }
-    console.log(this.state);
-    
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-     if(prevState.board !== this.state.board) {
-      console.log(this.state);
-      this.isGameWon(this.state.board);
-     }
+    }  
   }
 
   onClick = (cell) => {
@@ -52,7 +43,6 @@ export default class Board extends React.Component {
 
   isGameWon = (board) => {
     const nonVisibleCells = board.filter(cell => cell.visible === false);
-    console.log(nonVisibleCells);
     
     const cellsHasMine = (cell) => cell.hasMine === true;
     return nonVisibleCells.every(cellsHasMine);
