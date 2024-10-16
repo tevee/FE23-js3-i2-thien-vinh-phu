@@ -23,7 +23,7 @@ export default class Board extends React.Component {
   }
 
   onClick = (cell) => {
-    if(this.state.isGameOver) return;
+    if(this.state.isGameOver || this.state.isGameWon) return;
 
     this.setState(prevState => {
       const newBoard = [...prevState.board];
@@ -64,7 +64,12 @@ export default class Board extends React.Component {
         <h2>{(this.state.isGameOver && 'Game Over') || (this.state.isGameWon && 'Game Won')}</h2>
         <div className='board'>
           {this.state.board.map(cell => (
-            <Cell key={cell.index} cell={cell} onClick={this.onClick} isGameOver={this.state.isGameOver}/>
+            <Cell 
+              key={cell.index}
+              cell={cell}
+              onClick={this.onClick}
+              isGameOver={this.state.isGameOver}
+            />
           ))}
         </div>
       </div>
